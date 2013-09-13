@@ -1,0 +1,7 @@
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR);
+CREATE TABLE snippets (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, current_version INTEGER NOT NULL, created TIMESTAMP NOT NULL, user_id INTEGER NOT NULL, description TEXT);
+CREATE TABLE snippet_versions (snippet_id INTEGER NOT NULL, version INTEGER NOT NULL, contents TEXT, created TIMESTAMP NOT NULL, PRIMARY KEY (snippet_id, version));
+CREATE TABLE snippet_remixes (snippet_id INTEGER KEY NOT NULL, user_id INTEGER NOT NULL, contents TEXT);
+CREATE TABLE comments (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, entity_type VARCHAR NOT NULL, entity_id INTEGER NOT NULL, entity_version INTEGER NOT NULL, created TIMESTAMP NOT NULL, contents TEXT);
+CREATE TABLE upvotes (user_id INTEGER NOT NULL, remix_id INTEGER NOT NULL, PRIMARY KEY (user_id, remix_id));
+
