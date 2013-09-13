@@ -34,8 +34,14 @@ main = do
    res <- withDB $ \db -> query db $ dbGetSnippet snippetId
 
    let s = (snippetFactory $ head res) { snippetComments = map commentFactory comments }
+   -}
+
+   let s = Snippet {
+                   }
 
    withDB $ \db -> dbInsertSnippet s db
+
+   id <- withDB $ \db -> query db $ lastId T.snippets
    
    t <- getCurrentTime
 
