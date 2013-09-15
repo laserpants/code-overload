@@ -31,21 +31,21 @@ data Comment = Comment
 
 instance FromJSON Comment where
    parseJSON (Object o) =
-      Comment <$> o .: "comment_id"
-              <*> o .: "user_id"
-              <*> o .: "type"
-              <*> o .: "entity_id"
-              <*> o .: "entity_version"
-              <*> o .: "created"
-              <*> o .: "body"
+      Comment <$>  o .: "id"
+              <*>  o .: "userId"
+              <*>  o .: "type"
+              <*>  o .: "entityId"
+              <*>  o .: "entityVersion"
+              <*> (o .: "created" >>= toUTCTime)
+              <*>  o .: "body"
    parseJSON _ = mzero
 
 instance ToJSON Comment where
-   toJSON Comment{..} = object [ "comment_id"      .= commentId
-                               , "user_id"         .= commentUserId
+   toJSON Comment{..} = object [ "id"              .= commentId
+                               , "userId"          .= commentUserId
                                , "type"            .= commentEntityType
-                               , "entity_id"       .= commentEntityId
-                               , "entity_version"  .= commentEntityVersion
+                               , "entityId"        .= commentEntityId
+                               , "entityVersion"   .= commentEntityVersion
                                , "created"         .= commentCreated
                                , "body"            .= commentBody ]
 

@@ -14,12 +14,12 @@ data Remix = Remix
 
 instance FromJSON Remix where
    parseJSON (Object o) =
-      Remix <$> o .: "snippet_id"
-            <*> o .: "user_id"
+      Remix <$> o .: "snippetId"
+            <*> o .: "userId"
             <*> o .: "body"
    parseJSON _ = mzero
 
 instance ToJSON Remix where
-   toJSON Remix{..} = object [ "snippet_id"  .= remixSnippetId
-                             , "user_id"     .= remixUserId
+   toJSON Remix{..} = object [ "snippetId"   .= remixSnippetId
+                             , "userId"      .= remixUserId
                              , "body"        .= remixBody ]

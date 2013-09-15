@@ -132,3 +132,13 @@ instance FieldTag EntityVersion where
 
 entityVersion :: Attr EntityVersion Int
 entityVersion = mkAttr EntityVersion
+
+-- | version created
+
+data VersionCreated = VersionCreated
+
+instance FieldTag VersionCreated where 
+   fieldName _ = "created"
+
+versionCreated :: Attr VersionCreated String
+versionCreated = mkAttr VersionCreated

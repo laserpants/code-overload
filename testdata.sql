@@ -27,4 +27,4 @@ INSERT INTO comments (entity_id, user_id, entity_type, entity_version, created, 
 INSERT INTO comments (entity_id, user_id, entity_type, entity_version, created, contents) VALUES (1, 2, 'snippet', 2, strftime('%s','now'), 'this is a comment 2');
 INSERT INTO comments (entity_id, user_id, entity_type, entity_version, created, contents) VALUES (3, 3, 'snippet', 2, strftime('%s','now'), 'this is a comment 3');
 
-INSERT INTO upvotes (user_id, remix_id) VALUES ();
+

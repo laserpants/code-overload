@@ -4,12 +4,13 @@ module App.Types.Snippet where
 
 import App.Types
 import App.Types.Comment
-import Control.Applicative                    ( (<|>), (<$>), (<*>), pure )
+import Control.Applicative                    ( Applicative, (<|>), (<$>), (<*>), pure )
 import Control.Monad                          ( mzero )
 import Data.Aeson
 import Data.Time.Clock                        ( UTCTime )
 
-data SnippetVersion = SnippetVersion
+data SnippetVersion = VersionNumber Int
+   | SnippetVersion
    { versionSnippetId      :: Int
    , versionNumber         :: Int
    , versionBody           :: String
@@ -18,7 +19,7 @@ data SnippetVersion = SnippetVersion
 
 data Snippet = Snippet
    { snippetId             :: Int
-   , snippetCurrentVersion :: Int
+   , snippetCurrentVersion :: SnippetVersion
    , snippetCreated        :: UTCTime
    , snippetUserId         :: Int
    , snippetDescription    :: String
@@ -27,34 +28,35 @@ data Snippet = Snippet
 
 instance FromJSON SnippetVersion where
    parseJSON (Object o) =
-      SnippetVersion <$> o .: "snippet_id"
-                     <*> o .: "version"
-                     <*> o .: "body"
-                     <*> o .: "created"
-   parseJSON _ = mzero
+      SnippetVersion <$>  o .: "snippetId"
+                     <*>  o .: "version"
+                     <*>  o .: "body"
+                     <*> (o .: "created" >>= toUTCTime)
+   parseJSON v = VersionNumber <$> parseJSON v
 
 instance ToJSON SnippetVersion where
-   toJSON SnippetVersion{..} = object [ "snippet_id"  .= versionSnippetId
+   toJSON SnippetVersion{..} = object [ "snippetId"   .= versionSnippetId
                                       , "version"     .= versionNumber
                                       , "body"        .= versionBody
                                       , "created"     .= versionCreated ]
+   toJSON (VersionNumber v) = toJSON v
 
 instance FromJSON Snippet where
-   parseJSON (Object o) = do
+   parseJSON (Object o) = do   
       comments <- parseJSON =<< (o .: "comments")
       Snippet <$> (o .: "id" <|> pure 0)
-              <*>  o .: "current_version"
-              <*>  o .: "created"
-              <*>  o .: "user_id"
+              <*>  o .: "currentVersion"
+              <*> (o .: "created" >>= toUTCTime)
+              <*>  o .: "userId"
               <*>  o .: "description"
-              <*>  o .: comments
+              <*> (pure comments)
    parseJSON _ = mzero
 
 instance ToJSON Snippet where
    toJSON Snippet{..} = object [ "id"              .= snippetId
-                               , "current_version" .= snippetCurrentVersion
+                               , "currentVersion"  .= snippetCurrentVersion
                                , "created"         .= snippetCreated
-                               , "user_id"         .= snippetUserId
+                               , "userId"          .= snippetUserId
                                , "description"     .= snippetDescription 
                                , "comments"        .= snippetComments ]
 
