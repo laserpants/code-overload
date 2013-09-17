@@ -75,9 +75,10 @@ dbInsertSnippet Snippet{..} conn = do
    insert conn T.snippets
       ( F.id             <<  _default
       # F.currentVersion <<- 1
-      # F.created        <<- (pack $ show time)
+      # F.created        <<- pack (show time)
       # F.userId         <<- snippetUserId
-      # F.description    <<- snippetDescription )
+      # F.description    <<- snippetDescription 
+      )
 
 dbInsertSnippetVersion :: SnippetVersion -> Database -> IO ()
 dbInsertSnippetVersion SnippetVersion{..} conn = do
@@ -86,7 +87,8 @@ dbInsertSnippetVersion SnippetVersion{..} conn = do
       ( F.snippetId      <<- versionSnippetId
       # F.version        <<- versionNumber
       # F.body           <<- versionBody
-      # F.versionCreated <<- (pack $ show time) )
+      # F.versionCreated <<- pack (show time) 
+      )
 
 ----------------------------------- /~/ -----------------------------------
 

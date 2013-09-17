@@ -62,13 +62,13 @@ dbInsertComment Comment{..} conn = do
 
 ----------------------------------- /~/ -----------------------------------
 
-commentFactory :: (Select (Attr F.Id            Int)    r Int,
-                   Select (Attr F.UserId        Int)    r Int,
-                   Select (Attr F.EntityType    Text)   r Text,
-                   Select (Attr F.EntityId      Int)    r Int,
-                   Select (Attr F.EntityVersion Int)    r Int,
-                   Select (Attr F.Created       Text)   r Text,
-                   Select (Attr F.Body          Text)   r Text) => r 
+commentFactory :: (Select (Attr F.Id            Int)   r Int,
+                   Select (Attr F.UserId        Int)   r Int,
+                   Select (Attr F.EntityType    Text)  r Text,
+                   Select (Attr F.EntityId      Int)   r Int,
+                   Select (Attr F.EntityVersion Int)   r Int,
+                   Select (Attr F.Created       Text)  r Text,
+                   Select (Attr F.Body          Text)  r Text) => r 
                 -> Comment
 commentFactory o =
    let entity = case (unpack $ o!F.entityType) of
