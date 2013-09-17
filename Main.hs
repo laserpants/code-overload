@@ -9,12 +9,6 @@ import App.Router
 import Control.Monad						   ( msum, mzero, join )
 import Happstack.Server
 
-import Data.Aeson
-import App.Types.Snippet
-import App.Types.Comment
-
-import Data.ByteString.Lazy
-
 main :: IO ()
 main = simpleHTTP nullConf $ do
    decodeBody (defaultBodyPolicy "/tmp/" 0 1000 1000)
