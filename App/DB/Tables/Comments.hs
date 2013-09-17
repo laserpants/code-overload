@@ -1,7 +1,8 @@
 module App.DB.Tables.Comments where
 
-import Database.HaskellDB.DBLayout
 import App.DB.Fields
+import Database.HaskellDB.DBLayout
+import Data.Text
 
 type Comments = (RecCons Id            (Expr Int) 
                 (RecCons UserId        (Expr Int) 
@@ -9,7 +10,7 @@ type Comments = (RecCons Id            (Expr Int)
                 (RecCons EntityId      (Expr Int) 
                 (RecCons EntityVersion (Expr Int) 
                 (RecCons Created       (Expr String) 
-                (RecCons Body          (Expr String) RecNil)))))))
+                (RecCons Body          (Expr Text) RecNil)))))))
 
 comments :: Table Comments
 comments = baseTable "comments" 

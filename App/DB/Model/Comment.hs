@@ -11,6 +11,7 @@ import Data.Time                               ( UTCTime(..), getCurrentTime )
 import qualified App.DB.Tables.Snippets        as T
 import qualified App.DB.Tables.Comments        as T
 import qualified App.DB.Fields                 as F
+import qualified Data.Text                     as Text
 
 dbGetCommentsForSnippet id = do
    c <- table T.comments
@@ -32,7 +33,7 @@ dbGetComment :: Int -> Query (Rel (RecCons F.Id               (Expr Int)
                                   (RecCons F.EntityId         (Expr Int)
                                   (RecCons F.EntityVersion    (Expr Int)
                                   (RecCons F.Created          (Expr String)
-                                  (RecCons F.Body             (Expr String) RecNil))))))))
+                                  (RecCons F.Body             (Expr Text.Text) RecNil))))))))
 dbGetComment id = do
    c <- table T.comments
    restrict ( c!F.id .==. constant id )
@@ -61,13 +62,13 @@ dbInsertComment Comment{..} conn = do
 
 ----------------------------------- /~/ -----------------------------------
 
-commentFactory :: (Select (Attr F.Id            Int)    r Int,
-                   Select (Attr F.UserId        Int)    r Int,
-                   Select (Attr F.EntityType    String) r String,
-                   Select (Attr F.EntityId      Int)    r Int,
-                   Select (Attr F.EntityVersion Int)    r Int,
-                   Select (Attr F.Created       String) r String,
-                   Select (Attr F.Body          String) r String) => r 
+commentFactory :: (Select (Attr F.Id            Int)       r Int,
+                   Select (Attr F.UserId        Int)       r Int,
+                   Select (Attr F.EntityType    String)    r String,
+                   Select (Attr F.EntityId      Int)       r Int,
+                   Select (Attr F.EntityVersion Int)       r Int,
+                   Select (Attr F.Created       String)    r String,
+                   Select (Attr F.Body          Text.Text) r Text.Text) => r 
                 -> Comment
 commentFactory o =
    let entity = case o!F.entityType of

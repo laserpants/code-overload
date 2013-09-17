@@ -1,6 +1,7 @@
 module App.DB.Fields where
 
 import Database.HaskellDB.DBLayout
+import Data.Text
 import Prelude                                hiding ( id )
 
 -- | id
@@ -20,7 +21,7 @@ data Email = Email
 instance FieldTag Email where 
    fieldName _ = "email"
 
-email :: Attr Email String
+email :: Attr Email Text
 email = mkAttr Email
 
 -- | current version
@@ -60,7 +61,7 @@ data Description = Description
 instance FieldTag Description where 
    fieldName _ = "description"
 
-description :: Attr Description String
+description :: Attr Description Text
 description = mkAttr Description
 
 -- | version
@@ -80,7 +81,7 @@ data Body = Body
 instance FieldTag Body where 
    fieldName _ = "contents"
 
-body :: Attr Body String
+body :: Attr Body Text
 body = mkAttr Body
 
 -- | snippet id

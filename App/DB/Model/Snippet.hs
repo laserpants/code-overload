@@ -12,13 +12,14 @@ import qualified App.DB.Tables.Snippets        as T
 import qualified App.DB.Tables.SnippetVersions as T
 import qualified App.DB.Tables.Comments        as T
 import qualified App.DB.Fields                 as F
+import qualified Data.Text                     as Text
 
 -- | Fetch all snippets from the database
 dbGetSnippetIndex :: Query (Rel (RecCons F.Id               (Expr Int)
                                 (RecCons F.CurrentVersion   (Expr Int)
                                 (RecCons F.Created          (Expr String)
                                 (RecCons F.UserId           (Expr Int)
-                                (RecCons F.Description      (Expr String) RecNil))))))
+                                (RecCons F.Description      (Expr Text.Text) RecNil))))))
 dbGetSnippetIndex = do
    s <- table T.snippets
    project $ F.id          	  << s!F.id
@@ -48,8 +49,8 @@ dbGetSnippet :: Int -> Query (Rel (RecCons F.Id               (Expr Int)
                                   (RecCons F.CurrentVersion   (Expr Int)
                                   (RecCons F.Created          (Expr String)
                                   (RecCons F.UserId           (Expr Int)
-                                  (RecCons F.Description      (Expr String)
-                                  (RecCons F.Body             (Expr String)
+                                  (RecCons F.Description      (Expr Text.Text)
+                                  (RecCons F.Body             (Expr Text.Text)
                                   (RecCons F.VersionCreated   (Expr String) RecNil))))))))
 dbGetSnippet id = do
    s <- table T.snippets
@@ -116,8 +117,8 @@ snippetFactory :: (Select (Attr F.Id Int)                r Int,
                    Select (Attr F.CurrentVersion Int)    r Int,
                    Select (Attr F.Created String)        r String,
                    Select (Attr F.UserId Int)            r Int,
-                   Select (Attr F.Description String)    r String, 
-                   Select (Attr F.Body String)           r String,
+                   Select (Attr F.Description Text.Text) r Text.Text, 
+                   Select (Attr F.Body Text.Text)        r Text.Text,
                    Select (Attr F.VersionCreated String) r String) => r
                 -> Snippet
 
@@ -141,7 +142,7 @@ simpleSnippetFactory :: (Select (Attr F.Id Int)                r Int,
                          Select (Attr F.CurrentVersion Int)    r Int,
                          Select (Attr F.Created String)        r String,
                          Select (Attr F.UserId Int)            r Int,
-                         Select (Attr F.Description String)    r String) => r
+                         Select (Attr F.Description Text.Text) r Text.Text) => r
                       -> Snippet
 
 simpleSnippetFactory o = Snippet 
@@ -159,8 +160,8 @@ snippetVersionFactory :: (Select (Attr F.Id Int)                r Int,
                           Select (Attr F.CurrentVersion Int)    r Int,
                           Select (Attr F.Created String)        r String,
                           Select (Attr F.UserId Int)            r Int,
-                          Select (Attr F.Description String)    r String, 
-                          Select (Attr F.Body String)           r String,
+                          Select (Attr F.Description Text.Text) r Text.Text, 
+                          Select (Attr F.Body Text.Text)        r Text.Text,
                           Select (Attr F.VersionCreated String) r String) => r
                        -> SnippetVersion
 

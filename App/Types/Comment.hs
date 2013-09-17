@@ -29,7 +29,7 @@ data Comment = Comment
    , commentEntityId       :: Int
    , commentEntityVersion  :: Int
    , commentCreated        :: UTCTime
-   , commentBody           :: String
+   , commentBody           :: !Text
    } deriving (Show)
 
 instance FromJSON Comment where

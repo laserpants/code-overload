@@ -8,12 +8,13 @@ import Control.Applicative                    ( Applicative, (<|>), (<$>), (<*>)
 import Control.Monad                          ( mzero )
 import Data.Aeson
 import Data.Time.Clock                        ( UTCTime )
+import Data.Text
 
 data SnippetVersion = VersionNumber Int
    | SnippetVersion
    { versionSnippetId      :: Int
    , versionNumber         :: Int
-   , versionBody           :: String
+   , versionBody           :: !Text
    , versionCreated        :: UTCTime
    } deriving (Show)
 
@@ -22,7 +23,7 @@ data Snippet = Snippet
    , snippetCurrentVersion :: SnippetVersion
    , snippetCreated        :: UTCTime
    , snippetUserId         :: Int
-   , snippetDescription    :: String
+   , snippetDescription    :: !Text
    , snippetComments       :: [Comment]
    } deriving (Show)
 
