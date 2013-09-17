@@ -7,7 +7,7 @@ import Data.Text
 type SnippetVersions = (RecCons SnippetId      (Expr Int) 
                        (RecCons Version        (Expr Int) 
                        (RecCons Body           (Expr Text) 
-                       (RecCons VersionCreated (Expr String) RecNil))))
+                       (RecCons VersionCreated (Expr Text) RecNil))))
 
 snippetVersions :: Table SnippetVersions
 snippetVersions = baseTable "snippet_versions" 

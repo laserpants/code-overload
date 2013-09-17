@@ -14,7 +14,10 @@ import Data.Text
 import qualified App.DB.Fields                 as F
 
 parseUTCTime :: String -> UTCTime
-parseUTCTime time = posixSecondsToUTCTime $ fromIntegral $ read time
+parseUTCTime = posixSecondsToUTCTime . fromIntegral . read 
+
+parseUTCTimeText :: Text -> UTCTime
+parseUTCTimeText = parseUTCTime . unpack
 
 lastId :: (ShowRecRow r, HasField F.Id r) => Table r -> Query (Rel (RecCons F.Id (Expr Int) RecNil))
 lastId tbl = do

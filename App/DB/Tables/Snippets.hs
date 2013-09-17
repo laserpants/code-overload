@@ -6,7 +6,7 @@ import Data.Text
 
 type Snippets = (RecCons Id               (Expr Int) 
                 (RecCons CurrentVersion   (Expr Int) 
-                (RecCons Created          (Expr String) 
+                (RecCons Created          (Expr Text) 
                 (RecCons UserId           (Expr Int) 
                 (RecCons Description      (Expr Text) RecNil)))))
 

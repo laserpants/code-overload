@@ -41,7 +41,7 @@ data Created = Created
 instance FieldTag Created where 
    fieldName _ = "created"
 
-created :: Attr Created String
+created :: Attr Created Text
 created = mkAttr Created
 
 -- | user id
@@ -111,7 +111,7 @@ data EntityType = EntityType
 instance FieldTag EntityType where 
    fieldName _ = "entity_type"
 
-entityType :: Attr EntityType String
+entityType :: Attr EntityType Text
 entityType = mkAttr EntityType
 
 -- | entity id
@@ -141,5 +141,5 @@ data VersionCreated = VersionCreated
 instance FieldTag VersionCreated where 
    fieldName _ = "created"
 
-versionCreated :: Attr VersionCreated String
+versionCreated :: Attr VersionCreated Text
 versionCreated = mkAttr VersionCreated
