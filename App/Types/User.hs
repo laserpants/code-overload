@@ -9,7 +9,7 @@ import Data.Aeson
 
 data User = User
    { userId    :: Int
-   , userEmail :: String
+   , userEmail :: !Text
    } deriving (Show)
 
 instance FromJSON User where

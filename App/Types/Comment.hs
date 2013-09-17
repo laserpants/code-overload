@@ -7,13 +7,16 @@ import Control.Applicative                    ( (<|>), (<$>), (<*>), pure )
 import Control.Monad                          ( mzero )
 import Data.Aeson
 import Data.Time.Clock                        ( UTCTime )
+import Data.Text
 
 data EntityType = SnippetEntity | RemixEntity
-   deriving (Show)
+
+instance Show EntityType where
+   show RemixEntity = "remix"
+   show _           = "snippet"
 
 instance ToJSON EntityType where
-   toJSON RemixEntity = "remix"
-   toJSON _           = "snippet"
+   toJSON = String . pack . show
 
 instance FromJSON EntityType where
    parseJSON "remix" = return RemixEntity
@@ -31,13 +34,13 @@ data Comment = Comment
 
 instance FromJSON Comment where
    parseJSON (Object o) =
-      Comment <$>  o .: "id"
-              <*>  o .: "userId"
-              <*>  o .: "type"
-              <*>  o .: "entityId"
-              <*>  o .: "entityVersion"
-              <*> (o .: "created" >>= toUTCTime)
-              <*>  o .: "body"
+      Comment <$> (o .: "id"              <|> pure 0)
+              <*> (o .: "userId")
+              <*> (o .: "type"            <|> pure SnippetEntity)
+              <*> (o .: "entityId")
+              <*> (o .: "entityVersion"   <|> pure 1)
+              <*> (o .: "created"         <|> pure 0 >>= toUTCTime)
+              <*> (o .: "body")
    parseJSON _ = mzero
 
 instance ToJSON Comment where

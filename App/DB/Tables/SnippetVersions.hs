@@ -3,9 +3,9 @@ module App.DB.Tables.SnippetVersions where
 import Database.HaskellDB.DBLayout
 import App.DB.Fields
 
-type SnippetVersions = (RecCons SnippetId (Expr Int) 
-                       (RecCons Version (Expr Int) 
-                       (RecCons Body (Expr String) 
+type SnippetVersions = (RecCons SnippetId      (Expr Int) 
+                       (RecCons Version        (Expr Int) 
+                       (RecCons Body           (Expr String) 
                        (RecCons VersionCreated (Expr String) RecNil))))
 
 snippetVersions :: Table SnippetVersions

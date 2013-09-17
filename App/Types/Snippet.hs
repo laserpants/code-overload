@@ -28,10 +28,10 @@ data Snippet = Snippet
 
 instance FromJSON SnippetVersion where
    parseJSON (Object o) =
-      SnippetVersion <$>  o .: "snippetId"
-                     <*>  o .: "version"
-                     <*>  o .: "body"
-                     <*> (o .: "created" >>= toUTCTime)
+      SnippetVersion <$> (o .: "snippetId" <|> pure 0)
+                     <*> (o .: "version"   <|> pure 1)
+                     <*> (o .: "body")
+                     <*> (o .: "created"   <|> pure 0 >>= toUTCTime)
    parseJSON v = VersionNumber <$> parseJSON v
 
 instance ToJSON SnippetVersion where
@@ -42,13 +42,14 @@ instance ToJSON SnippetVersion where
    toJSON (VersionNumber v) = toJSON v
 
 instance FromJSON Snippet where
-   parseJSON (Object o) = do   
-      comments <- parseJSON =<< (o .: "comments")
-      Snippet <$> (o .: "id" <|> pure 0)
-              <*>  o .: "currentVersion"
-              <*> (o .: "created" >>= toUTCTime)
-              <*>  o .: "userId"
-              <*>  o .: "description"
+   parseJSON (Object o) = do
+      let versionOne = pure $ VersionNumber 1
+      comments <- (o .: "comments" >>= parseJSON) <|> pure []
+      Snippet <$> (o .: "id"             <|> pure 0)
+              <*> (o .: "currentVersion" <|> versionOne)
+              <*> (o .: "created"        <|> pure 0 >>= toUTCTime)
+              <*> (o .: "userId")
+              <*> (o .: "description")
               <*> (pure comments)
    parseJSON _ = mzero
 

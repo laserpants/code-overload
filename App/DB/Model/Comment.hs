@@ -50,14 +50,10 @@ dbGetComment id = do
 dbInsertComment :: Comment -> Database -> IO ()
 dbInsertComment Comment{..} conn = do
    time <- getCurrentTime
-   -- todo: make instance of read
-   let tp = case commentEntityType of
-               RemixEntity -> "remix"
-               _           -> "snippet"
    insert conn T.comments
       ( F.id             <<  _default
       # F.userId         <<- commentUserId 
-      # F.entityType     <<- tp
+      # F.entityType     <<- show commentEntityType
       # F.entityId       <<- commentEntityId
       # F.entityVersion  <<- commentEntityVersion
       # F.created        <<- show time
@@ -74,13 +70,12 @@ commentFactory :: (Select (Attr F.Id            Int)    r Int,
                    Select (Attr F.Body          String) r String) => r 
                 -> Comment
 commentFactory o =
-   -- todo: make instance of show
-   let tp = case o!F.entityType of
-               "remix" -> RemixEntity
-               _       -> SnippetEntity in 
+   let entity = case o!F.entityType of
+                   "remix" -> RemixEntity
+                   _       -> SnippetEntity in 
    Comment { commentId            = o!F.id 
 		   , commentUserId        = o!F.userId
-		   , commentEntityType    = tp
+		   , commentEntityType    = entity
 		   , commentEntityId      = o!F.entityId
 		   , commentEntityVersion = o!F.entityVersion
 		   , commentCreated       = parseUTCTime $ o!F.created

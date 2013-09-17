@@ -8,7 +8,7 @@ import Happstack.Server
 
 type ServR = ServerPartT IO Response
 
--- | Pre-flight response sent back to user-agent after OPTIONS request
+-- | Pre-flight response sent back to user-agent on OPTIONS request
 preFlight :: ServR
 preFlight = do
    req <- askRq
