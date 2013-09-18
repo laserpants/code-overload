@@ -5,8 +5,8 @@ import Database.HaskellDB.DBLayout
 import Data.Text
 
 type Remixes = (RecCons SnippetId (Expr Int) 
-               (RecCons UserId (Expr Int) 
-               (RecCons Body (Expr Text) RecNil)))
+               (RecCons UserId    (Expr Int) 
+               (RecCons Body      (Expr Text) RecNil)))
 
 remixes :: Table Remixes
 remixes = baseTable "remixes" 

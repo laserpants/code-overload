@@ -12,19 +12,19 @@ import Data.Text
 
 data SnippetVersion = VersionNumber Int
    | SnippetVersion
-   { versionSnippetId      :: Int
-   , versionNumber         :: Int
+   { versionSnippetId      :: !Int
+   , versionNumber         :: !Int
    , versionBody           :: !Text
-   , versionCreated        :: UTCTime
+   , versionCreated        :: !UTCTime
    } deriving (Show)
 
 data Snippet = Snippet
-   { snippetId             :: Int
-   , snippetCurrentVersion :: SnippetVersion
-   , snippetCreated        :: UTCTime
-   , snippetUserId         :: Int
+   { snippetId             :: !Int
+   , snippetCurrentVersion :: !SnippetVersion
+   , snippetCreated        :: !UTCTime
+   , snippetUserId         :: !Int
    , snippetDescription    :: !Text
-   , snippetComments       :: [Comment]
+   , snippetComments       :: ![Comment]
    } deriving (Show)
 
 instance FromJSON SnippetVersion where

@@ -23,12 +23,12 @@ instance FromJSON EntityType where
    parseJSON _       = return SnippetEntity
 
 data Comment = Comment
-   { commentId             :: Int
-   , commentUserId         :: Int
-   , commentEntityType     :: EntityType
-   , commentEntityId       :: Int
-   , commentEntityVersion  :: Int
-   , commentCreated        :: UTCTime
+   { commentId             :: !Int
+   , commentUserId         :: !Int
+   , commentEntityType     :: !EntityType
+   , commentEntityId       :: !Int
+   , commentEntityVersion  :: !Int
+   , commentCreated        :: !UTCTime
    , commentBody           :: !Text
    } deriving (Show)
 

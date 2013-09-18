@@ -4,7 +4,7 @@ import App.DB.Fields
 import Database.HaskellDB.DBLayout
 import Data.Text
 
-type Users = (RecCons Id (Expr Int) 
+type Users = (RecCons Id    (Expr Int) 
              (RecCons Email (Expr Text) RecNil))
 
 users :: Table Users

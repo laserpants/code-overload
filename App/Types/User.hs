@@ -8,7 +8,7 @@ import Control.Monad                          ( mzero )
 import Data.Aeson
 
 data User = User
-   { userId    :: Int
+   { userId    :: !Int
    , userEmail :: !Text
    } deriving (Show)
 

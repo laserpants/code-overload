@@ -58,7 +58,8 @@ dbInsertComment Comment{..} conn = do
       # F.entityId       <<- commentEntityId
       # F.entityVersion  <<- commentEntityVersion
       # F.created        <<- pack (show time)
-      # F.body           <<- commentBody )
+      # F.body           <<- commentBody 
+      )
 
 ----------------------------------- /~/ -----------------------------------
 

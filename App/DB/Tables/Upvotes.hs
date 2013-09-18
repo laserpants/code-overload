@@ -3,7 +3,7 @@ module App.DB.Tables.Upvotes where
 import Database.HaskellDB.DBLayout
 import App.DB.Fields
 
-type Upvotes = (RecCons UserId (Expr Int) 
+type Upvotes = (RecCons UserId  (Expr Int) 
                (RecCons RemixId (Expr Int) RecNil))
 
 upvotes :: Table Upvotes

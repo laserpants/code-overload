@@ -8,8 +8,8 @@ import Control.Monad                          ( mzero )
 import Data.Aeson
 
 data Upvote = Upvote
-   { upvoteUserId          :: Int
-   , upvoteRemixId         :: Int
+   { upvoteUserId          :: !Int
+   , upvoteRemixId         :: !Int
    } deriving (Show)
 
 instance FromJSON Upvote where
