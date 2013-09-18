@@ -1,11 +1,16 @@
 'use strict';
 
-/* Controllers */
+function AllCtrl ($scope) {
+    $scope.test = 'all snippets';
+}
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+function OneCtrl ($scope, $routeParams) {
+    $scope.test = 'single snippet';
+    $scope.id = $routeParams.id;
+}
 
-  }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+function VersionCtrl ($scope, $routeParams) {
+    $scope.test = 'version';
+    $scope.id = $routeParams.id;
+    $scope.version = $routeParams.version;
+}
