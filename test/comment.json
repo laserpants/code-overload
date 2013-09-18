@@ -1,9 +1,6 @@
 {
-	"id": 123,
 	"userId": 1,
-	"type": "snippet",
 	"entityId": 2,
 	"entityVersion": 1,
-	"created": 0,
 	"body": "this is a test comment"
 }
