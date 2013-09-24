@@ -14,15 +14,18 @@ import qualified App.DB.Tables.SnippetVersions as T
 import qualified App.DB.Tables.Comments        as T
 import qualified App.DB.Fields                 as F
 
--- | Fetch all snippets from the database
+-- | Fetch all root (parentId = 0) snippets from the database
 dbGetSnippetIndex :: Query (Rel (RecCons F.Id               (Expr Int)
+                                (RecCons F.ParentId         (Expr Int)
                                 (RecCons F.CurrentVersion   (Expr Int)
                                 (RecCons F.Created          (Expr Text)
                                 (RecCons F.UserId           (Expr Int)
-                                (RecCons F.Description      (Expr Text) RecNil))))))
+                                (RecCons F.Description      (Expr Text) RecNil)))))))
 dbGetSnippetIndex = do
    s <- table T.snippets
+   restrict $ s!F.parentId .==. constant 0 
    project $ F.id          	  << s!F.id
+           # F.parentId       << s!F.parentId
            # F.currentVersion << s!F.currentVersion
            # F.created     	  << s!F.created
            # F.userId     	  << s!F.userId
@@ -46,12 +49,13 @@ dbUpdateCurrentSnippetVersion id newVersion conn = do
 
 -- | Get snippet by id
 dbGetSnippet :: Int -> Query (Rel (RecCons F.Id               (Expr Int)
+                                  (RecCons F.ParentId         (Expr Int)
                                   (RecCons F.CurrentVersion   (Expr Int)
                                   (RecCons F.Created          (Expr Text)
                                   (RecCons F.UserId           (Expr Int)
                                   (RecCons F.Description      (Expr Text)
                                   (RecCons F.Body             (Expr Text)
-                                  (RecCons F.VersionCreated   (Expr Text) RecNil))))))))
+                                  (RecCons F.VersionCreated   (Expr Text) RecNil)))))))))
 dbGetSnippet id = do
    s <- table T.snippets
    v <- table T.snippetVersions
@@ -59,6 +63,7 @@ dbGetSnippet id = do
          .&&. v!F.snippetId .==. constant id 
          .&&. v!F.version   .==. s!F.currentVersion )
    project $ F.id          	  << s!F.id
+           # F.parentId       << s!F.parentId
            # F.currentVersion << s!F.currentVersion
            # F.created     	  << s!F.created
            # F.userId     	  << s!F.userId
@@ -74,6 +79,7 @@ dbInsertSnippet Snippet{..} conn = do
    time <- getCurrentTime
    insert conn T.snippets
       ( F.id             <<  _default
+      # F.parentId       <<- snippetParentId
       # F.currentVersion <<- 1
       # F.created        <<- pack (show time)
       # F.userId         <<- snippetUserId
@@ -101,6 +107,7 @@ dbUpdateSnippet id Snippet{..} conn = do
    update conn T.snippets
       ( \content -> content!F.id .==. constant id )
       ( \content -> F.id             <<  _default
+                  # F.parentId       <<- snippetParentId
                   # F.currentVersion <<- version
                   # F.created        <<- (pack $ show snippetCreated)
                   # F.userId         <<- snippetUserId
@@ -116,6 +123,7 @@ dbDeleteSnippet id conn = do
 ----------------------------------- /~/ -----------------------------------
 
 snippetFactory :: (Select (Attr F.Id Int)              r Int, 
+                   Select (Attr F.ParentId Int)        r Int,
                    Select (Attr F.CurrentVersion Int)  r Int,
                    Select (Attr F.Created Text)        r Text,
                    Select (Attr F.UserId Int)          r Int,
@@ -126,6 +134,7 @@ snippetFactory :: (Select (Attr F.Id Int)              r Int,
 
 snippetFactory o = Snippet 
    { snippetId               = o!F.id
+   , snippetParentId         = o!F.parentId
    , snippetCurrentVersion   = SnippetVersion 
 	   { versionSnippetId = o!F.id
 	   , versionNumber    = o!F.currentVersion
@@ -141,6 +150,7 @@ snippetFactory o = Snippet
 ----------------------------------- /~/ -----------------------------------
 
 simpleSnippetFactory :: (Select (Attr F.Id Int)              r Int, 
+                         Select (Attr F.ParentId Int)        r Int,
                          Select (Attr F.CurrentVersion Int)  r Int,
                          Select (Attr F.Created Text)        r Text,
                          Select (Attr F.UserId Int)          r Int,
@@ -149,6 +159,7 @@ simpleSnippetFactory :: (Select (Attr F.Id Int)              r Int,
 
 simpleSnippetFactory o = Snippet 
    { snippetId               = o!F.id
+   , snippetParentId         = o!F.parentId
    , snippetCurrentVersion   = VersionNumber $ o!F.currentVersion
    , snippetCreated          = parseUTCTimeText $ o!F.created
    , snippetUserId           = o!F.userId

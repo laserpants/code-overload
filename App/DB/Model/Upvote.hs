@@ -13,12 +13,12 @@ import qualified App.DB.Fields                 as F
 dbInsertUpvote :: Upvote -> Database -> IO ()
 dbInsertUpvote Upvote{..} conn =
    insert conn T.upvotes
-      ( F.userId  <<- upvoteUserId
-      # F.remixId <<- upvoteRemixId )
+      ( F.userId    <<- upvoteUserId
+      # F.snippetId <<- upvoteSnippetId )
 
 dbGetUpvote Upvote{..} conn = do
    u <- table T.upvotes
-   restrict ( u!F.userId  .==. constant upvoteUserId 
-         .&&. u!F.remixId .==. constant upvoteRemixId )
-   project $ F.userId  << u!F.userId
-           # F.remixId << u!F.remixId
+   restrict ( u!F.userId    .==. constant upvoteUserId 
+         .&&. u!F.snippetId .==. constant upvoteSnippetId )
+   project $ F.userId    << u!F.userId
+           # F.snippetId << u!F.snippetId

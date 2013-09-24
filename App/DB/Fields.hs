@@ -94,45 +94,25 @@ instance FieldTag SnippetId where
 snippetId :: Attr SnippetId Int
 snippetId = mkAttr SnippetId
 
--- | remix id
+-- | parent id
 
-data RemixId = RemixId
+data ParentId = ParentId
 
-instance FieldTag RemixId where 
-   fieldName _ = "remix_id"
+instance FieldTag ParentId where 
+   fieldName _ = "parent_id"
 
-remixId :: Attr RemixId Int
-remixId = mkAttr RemixId
+parentId :: Attr ParentId Int
+parentId = mkAttr ParentId
 
--- | entity type
+-- | snippet version
 
-data EntityType = EntityType
+data SnippetVersion = SnippetVersion
 
-instance FieldTag EntityType where 
-   fieldName _ = "entity_type"
+instance FieldTag SnippetVersion where 
+   fieldName _ = "snippet_version"
 
-entityType :: Attr EntityType Text
-entityType = mkAttr EntityType
-
--- | entity id
-
-data EntityId = EntityId
-
-instance FieldTag EntityId where 
-   fieldName _ = "entity_id"
-
-entityId :: Attr EntityId Int
-entityId = mkAttr EntityId
-
--- | entity version
-
-data EntityVersion = EntityVersion
-
-instance FieldTag EntityVersion where 
-   fieldName _ = "entity_version"
-
-entityVersion :: Attr EntityVersion Int
-entityVersion = mkAttr EntityVersion
+snippetVersion :: Attr SnippetVersion Int
+snippetVersion = mkAttr SnippetVersion
 
 -- | version created
 

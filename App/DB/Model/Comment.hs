@@ -15,12 +15,11 @@ import qualified App.DB.Fields                 as F
 
 dbGetCommentsForSnippet id = do
    c <- table T.comments
-   restrict ( c!F.entityId .==. constant id )
+   restrict ( c!F.snippetId .==. constant id )
    project $ F.id          	  << c!F.id
            # F.userId         << c!F.userId
-           # F.entityType     << c!F.entityType
-           # F.entityId       << c!F.entityId
-           # F.entityVersion  << c!F.entityVersion
+           # F.snippetId      << c!F.snippetId
+           # F.snippetVersion << c!F.snippetVersion
            # F.created        << c!F.created
            # F.body           << c!F.body
 
@@ -29,19 +28,17 @@ dbGetCommentsForSnippet id = do
 -- | Get comment by id
 dbGetComment :: Int -> Query (Rel (RecCons F.Id               (Expr Int)
                                   (RecCons F.UserId           (Expr Int)
-                                  (RecCons F.EntityType       (Expr Text)
-                                  (RecCons F.EntityId         (Expr Int)
-                                  (RecCons F.EntityVersion    (Expr Int)
+                                  (RecCons F.SnippetId        (Expr Int)
+                                  (RecCons F.SnippetVersion   (Expr Int)
                                   (RecCons F.Created          (Expr Text)
-                                  (RecCons F.Body             (Expr Text) RecNil))))))))
+                                  (RecCons F.Body             (Expr Text) RecNil)))))))
 dbGetComment id = do
    c <- table T.comments
    restrict ( c!F.id .==. constant id )
    project $ F.id          	  << c!F.id
            # F.userId         << c!F.userId
-           # F.entityType     << c!F.entityType
-           # F.entityId       << c!F.entityId
-           # F.entityVersion  << c!F.entityVersion
+           # F.snippetId      << c!F.snippetId
+           # F.snippetVersion << c!F.snippetVersion
            # F.created        << c!F.created
            # F.body           << c!F.body
 
@@ -54,32 +51,26 @@ dbInsertComment Comment{..} conn = do
    insert conn T.comments
       ( F.id             <<  _default
       # F.userId         <<- commentUserId 
-      # F.entityType     <<- pack (show commentEntityType)
-      # F.entityId       <<- commentEntityId
-      # F.entityVersion  <<- commentEntityVersion
+      # F.snippetId      <<- commentSnippetId
+      # F.snippetVersion <<- commentSnippetVersion
       # F.created        <<- pack (show time)
       # F.body           <<- commentBody 
       )
 
 ----------------------------------- /~/ -----------------------------------
 
-commentFactory :: (Select (Attr F.Id            Int)   r Int,
-                   Select (Attr F.UserId        Int)   r Int,
-                   Select (Attr F.EntityType    Text)  r Text,
-                   Select (Attr F.EntityId      Int)   r Int,
-                   Select (Attr F.EntityVersion Int)   r Int,
-                   Select (Attr F.Created       Text)  r Text,
-                   Select (Attr F.Body          Text)  r Text) => r 
+commentFactory :: (Select (Attr F.Id             Int)   r Int,
+                   Select (Attr F.UserId         Int)   r Int,
+                   Select (Attr F.SnippetId      Int)   r Int,
+                   Select (Attr F.SnippetVersion Int)   r Int,
+                   Select (Attr F.Created        Text)  r Text,
+                   Select (Attr F.Body           Text)  r Text) => r 
                 -> Comment
 commentFactory o =
-   let entity = case (unpack $ o!F.entityType) of
-                   "remix" -> RemixEntity
-                   _       -> SnippetEntity in 
-   Comment { commentId            = o!F.id 
-		   , commentUserId        = o!F.userId
-		   , commentEntityType    = entity
-		   , commentEntityId      = o!F.entityId
-		   , commentEntityVersion = o!F.entityVersion
-		   , commentCreated       = parseUTCTimeText $ o!F.created
-		   , commentBody          = o!F.body
+   Comment { commentId             = o!F.id 
+		   , commentUserId         = o!F.userId
+		   , commentSnippetId      = o!F.snippetId
+		   , commentSnippetVersion = o!F.snippetVersion
+		   , commentCreated        = parseUTCTimeText $ o!F.created
+		   , commentBody           = o!F.body
 		   }

@@ -5,14 +5,16 @@ import Database.HaskellDB.DBLayout
 import Data.Text
 
 type Snippets = (RecCons Id               (Expr Int) 
+                (RecCons ParentId         (Expr Int)
                 (RecCons CurrentVersion   (Expr Int) 
                 (RecCons Created          (Expr Text) 
                 (RecCons UserId           (Expr Int) 
-                (RecCons Description      (Expr Text) RecNil)))))
+                (RecCons Description      (Expr Text) RecNil))))))
 
 snippets :: Table Snippets
 snippets = baseTable "snippets" 
          $ hdbMakeEntry Id 
+         # hdbMakeEntry ParentId
          # hdbMakeEntry CurrentVersion
          # hdbMakeEntry Created
          # hdbMakeEntry UserId

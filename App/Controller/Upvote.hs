@@ -21,5 +21,5 @@ postUpvote = do
       Just upvote -> do
          upvoteExists >>= \e -> if e then jsonBadRequest else dbRun post dbInsertUpvote
          where upvoteExists = do 
-               v <- lift $ withDB $ \db -> query db $ dbGetUpvote upvote db
-               return $ not $ null v
+               lift $ withDB $ \db -> query db $ dbGetUpvote upvote db
+               >>= return . not . null 
