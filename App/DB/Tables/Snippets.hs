@@ -1,17 +1,20 @@
 module App.DB.Tables.Snippets where
 
-import Database.HaskellDB.DBLayout
 import App.DB.Fields
+import Database.HaskellDB.DBLayout
+import Data.Text
 
 type Snippets = (RecCons Id               (Expr Int) 
+                (RecCons ParentId         (Expr Int)
                 (RecCons CurrentVersion   (Expr Int) 
-                (RecCons Created          (Expr String) 
+                (RecCons Created          (Expr Text) 
                 (RecCons UserId           (Expr Int) 
-                (RecCons Description      (Expr String) RecNil)))))
+                (RecCons Description      (Expr Text) RecNil))))))
 
 snippets :: Table Snippets
 snippets = baseTable "snippets" 
          $ hdbMakeEntry Id 
+         # hdbMakeEntry ParentId
          # hdbMakeEntry CurrentVersion
          # hdbMakeEntry Created
          # hdbMakeEntry UserId

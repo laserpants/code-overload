@@ -1,7 +1,7 @@
 module App.Types where
 
-import Control.Applicative                    ( Applicative, pure )
-import Data.Time.Clock                        ( UTCTime )
+import Control.Applicative                     ( Applicative, pure )
+import Data.Time.Clock                         ( UTCTime )
 import Data.Time.Clock.POSIX
 
 class KeyIndexable a
