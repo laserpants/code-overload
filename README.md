@@ -17,6 +17,19 @@ Another key difference is that the function, as one could expect, has a much mor
 
 Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. To obtain the result of a computation, an expression is reduced until it is in *normal form* — the state in which it is fully evaluated.
 
+Example, normal form:
+
+    1
+    \x -> (x + 1)        -- an anonymous function that takes a value x, and returns x + 1
+
+Not normal form:
+
+    1 + 2                -- evaluates to 3
+    "he" ++ "llo"        -- (++ denotes string concatenation) can be reduced to "hello"
+    (\x -> (x + 1)) 4    -- here, the function is applied to the value 4, hence this expression evaluates to 5
+    
+Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-what-is-weak-head-normal-form    
+
 For someone who comes from an imperative language background, programming in pure functional style can require a change in perspective.
 
 #### Pure functions
