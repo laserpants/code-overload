@@ -21,7 +21,7 @@ Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-
 
 ###### Normal form:
 
-    42                   -- (the answer to the ultimate question of life) already fully evealuated
+    42                   -- (the answer to the ultimate question of life) already fully evaluated
     \x -> (x + 1)        -- an anonymous function that takes a value x, and returns x + 1
 
 ###### *Not* normal form:
