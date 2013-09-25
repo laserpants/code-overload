@@ -22,7 +22,7 @@ GHC is the most commonly used Haskell compiler. It comes bundled with the Haskel
 Haskell belongs to a language family commonly referred to as *lazy* functional programming languages. Lazy evaluation is a technique used by compilers to implement a language property known as non-strictness. Strict and non-strict semantics differ in how evaluation of expressions propagates:
 
 * In the more common, strict semantics, expressions are evaluated from the inside-out. (example)
-* Under non-strict semantics, evaluation starts from the outside and unfolds towards the center. Sub-expressions are only computed when they are needed (call-by-need).
+* Under non-strict semantics, evaluation starts from the outside and unfolds towards the center. Sub-expressions are only computed when needed (call-by-need).
 
 (example)
 
