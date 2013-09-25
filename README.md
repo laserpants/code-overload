@@ -15,6 +15,8 @@ In this context, conventional (non-functional) programming languages (C, C++, Ja
 
 Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
+Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another.
+
 ### Haskell
 
 Haskell is a modern, compiled, strongly typed, purely functional, programming language based on the (Girard-Reynolds) polymorphic lambda calculus, also known as System-F. The Haskell language standard is the result of over twenty years of research in programming language design.
