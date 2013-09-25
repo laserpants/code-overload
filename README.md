@@ -1,4 +1,4 @@
-> A work-in-progress tutorial that explores functional programming techniques and technologies to build modern, mobile webb-applications using JavaScript and a Haskell-powered RESTful JSON API. 
+> A work-in-progress tutorial that explores functional programming techniques and technologies to build modern, mobile webb-applications using JavaScript and a Haskell-powered RESTful JSON API-server. 
 
 ## Overview of technologies
 
@@ -30,6 +30,7 @@ Haskell belongs to a language family commonly referred to as lazy functional pro
 
 ### REST
 
+### SQLite
 
 ## Part I. Server
 
