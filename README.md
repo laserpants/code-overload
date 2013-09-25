@@ -84,7 +84,7 @@ The original HaskellDB library was written by Daan Leijen and Erik Meijer (who i
 
 #### The new HaskellDB
 
-The first version of HaskellDB was relying on a feature called TRex – Typed records with extensibility – only available in the Hugs interpreter. Additionally, it only supported a Windows-specific ADO-based database backend. To address these, among other issues, a more recent, more portable version of the library was developed by students at Chalmers University of Technology.
+The first version of HaskellDB was relying on a feature called TRex – Typed records with extensibility – only available in the Hugs interpreter. Additionally, it only supported a Windows-specific ADO-based database backend. To address these, among other issues, a more recent, portable version of the library was developed by students at Chalmers University of Technology.
 
 ###### Student paper:
 
