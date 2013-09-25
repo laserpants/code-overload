@@ -103,7 +103,7 @@ The RecordWildCards extension introduces a simple notation that makes pattern ma
 
 HaskellDB is a combinator library for building syntactically correct, type-safe database queries, similar to the Language Integrated Query (LINQ) component in the .NET framework (or ARel for Ruby on Rails).
 
-HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need of a separate domain-specific language (such as SQL).
+HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need for a separate domain-specific language (such as SQL).
 
 As an example, here is what a simple query can look like using HaskellDB:
 
