@@ -17,6 +17,8 @@ Another key difference is that the function, as one could expect, has a much mor
 
 Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another.
 
+For someone who comes from an imperative language background, programming in pure functional style can require a change in perspective.
+
 #### Pure functions
 
 The term *pure* is often used to describe a property of expressions in the domain of functional programming. For a function to be considered pure, 
