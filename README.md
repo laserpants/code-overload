@@ -30,7 +30,7 @@ A function is said to be referentially transparent if (and only if) it, given th
 
 ### Haskell
 
-Haskell is a modern, compiled, strongly typed, purely functional, programming language based on the (Girard-Reynolds) polymorphic lambda calculus, also known as System-F. The Haskell language standard is the result of over twenty years of research in programming language design.
+Haskell is a modern, compiled, strongly typed, purely functional, programming language based on the (Girard-Reynolds) polymorphic lambda calculus, also known as System-F. The Haskell language standard is the result of over twenty years of research in programming language design. The language is named after the famous logician Haskell Curry.
 
 GHC is the most commonly used Haskell compiler. It comes bundled with the Haskell platform — a comprehensive development environment available for Windows, Mac, and Linux.
 
