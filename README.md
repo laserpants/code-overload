@@ -15,7 +15,9 @@ In this context, conventional (non-functional) programming languages (C, C++, Ja
 
 Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
-Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. For someone who comes from an imperative language background, programming in pure functional style can require a change in perspective.
+Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. To obtain the result of a computation, an expression is *reduced* until it is in *normal form* — the state in which it is fully evaluated
+
+For someone who comes from an imperative language background, programming in pure functional style can require a change in perspective.
 
 #### Pure functions
 
