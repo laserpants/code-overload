@@ -1,4 +1,4 @@
-> A work-in-progress tutorial that explores functional programming techniques and technologies to build modern, mobile web applications using JavaScript and a Haskell-powered RESTful JSON API-server. 
+> A work-in-progress tutorial that explores functional programming techniques and technologies to build a modern, mobile web application using JavaScript and a Haskell-powered RESTful JSON API-server. 
 
 ## Overview of technologies
 
