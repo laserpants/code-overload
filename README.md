@@ -6,6 +6,11 @@ A work-in-progress tutorial that explores functional programming techniques and 
 
 As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming.
 
+Intuitively, we may think of the difference as,
+
+* imperative: a sequence of instructions that outline what a program should do;
+* declarative: a collection of definitions that declare what things are.
+
 Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
 ### Haskell
