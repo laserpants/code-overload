@@ -21,8 +21,8 @@ Functional programming favors construction over mutation, and we think of a prog
 
 The term *pure* is often used to describe a property of expressions in functional programming. For a function to be considered pure, 
 
-* it is not allowed to exhibit any side effects, and
-* it must be referentially transparent.
+* it is not allowed to exhibit any *side effects*, and
+* it must be *referentially transparent*.
 
 Recall the black-box metaphor, used in numerous mathematical textbooks (illustration?), and according to which a function's internals are completely sealed off from the outside world. A side-effect is when a function or expression violates this principle -- that is, the procedure is allowed to communicate in some way with other program units (e.g. to share and exchange information).
 
