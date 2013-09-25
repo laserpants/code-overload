@@ -19,7 +19,7 @@ Functional programming favors construction over mutation, and we think of a prog
 
 #### Pure functions
 
-The term *pure* is often used to describe a property of expressions in functional programming. For a function to be considered pure, 
+The term *pure* is often used to describe a property of expressions in the domain of functional programming. For a function to be considered pure, 
 
 * it is not allowed to exhibit any *side effects*, and
 * it must be *referentially transparent*.
