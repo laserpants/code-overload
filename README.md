@@ -17,7 +17,7 @@ Another key difference is that the function, as one could expect, has a much mor
 
 Haskell is a modern, compiled, strongly typed, purely functional, programming language based on the (Girard-Reynolds) polymorphic lambda calculus, also known as System-F. The Haskell language standard is the result of over twenty years of research in programming language design.
 
-GHC is the most commonly used Haskell compiler. It comes bundled with the Haskell platform -- a development environment available for Windows, Mac, and Linux.
+GHC is the most commonly used Haskell compiler. It comes bundled with the Haskell platform -- a comprehensive development environment available for Windows, Mac, and Linux.
 
 Haskell belongs to a language family commonly referred to as lazy functional programming languages. Lazy evaluation is a technique used by compilers to implement a language property known as non-strictness. Strict and non-strict semantics differ in how evaluation of expressions propagates:
 
