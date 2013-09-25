@@ -16,3 +16,4 @@ Got snippet and comment data loading from a remote server.
 Escaped the port number in the server url. (There was a problem as the normal https://server:port/path/:param url was replacing/ignoring the :port part.  Using server\\:port fixed the problem.)
 Updated the templates to use the real data format from the server.
 
+** Step 5: Beautify templates
