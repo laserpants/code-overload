@@ -3,13 +3,14 @@
 module App.Types.User where
 
 import App.Types
-import Control.Applicative                    ( (<|>), (<$>), (<*>), pure )
-import Control.Monad                          ( mzero )
+import Control.Applicative                     ( (<|>), (<$>), (<*>), pure )
+import Control.Monad                           ( mzero )
 import Data.Aeson
+import Data.Text
 
 data User = User
-   { userId    :: Int
-   , userEmail :: !Text
+   { userId                :: !Int
+   , userEmail             :: !Text
    } deriving (Show)
 
 instance FromJSON User where

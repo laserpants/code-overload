@@ -4,26 +4,28 @@ module App.Types.Snippet where
 
 import App.Types
 import App.Types.Comment
-import Control.Applicative                    ( Applicative, (<|>), (<$>), (<*>), pure )
-import Control.Monad                          ( mzero )
+import Control.Applicative                     ( (<|>), (<$>), (<*>), pure )
+import Control.Monad                           ( mzero )
 import Data.Aeson
-import Data.Time.Clock                        ( UTCTime )
+import Data.Text
+import Data.Time                               ( UTCTime )
 
-data SnippetVersion = VersionNumber Int
-   | SnippetVersion
-   { versionSnippetId      :: Int
-   , versionNumber         :: Int
-   , versionBody           :: String
-   , versionCreated        :: UTCTime
+data SnippetVersion = 
+     VersionNumber Int | SnippetVersion 
+   { versionSnippetId      :: !Int
+   , versionNumber         :: !Int
+   , versionBody           :: !Text
+   , versionCreated        :: !UTCTime
    } deriving (Show)
 
 data Snippet = Snippet
-   { snippetId             :: Int
-   , snippetCurrentVersion :: SnippetVersion
-   , snippetCreated        :: UTCTime
-   , snippetUserId         :: Int
-   , snippetDescription    :: String
-   , snippetComments       :: [Comment]
+   { snippetId             :: !Int
+   , snippetParentId       :: !Int
+   , snippetCurrentVersion :: !SnippetVersion
+   , snippetCreated        :: !UTCTime
+   , snippetUserId         :: !Int
+   , snippetDescription    :: !Text
+   , snippetComments       :: ![Comment]
    } deriving (Show)
 
 instance FromJSON SnippetVersion where
@@ -46,6 +48,7 @@ instance FromJSON Snippet where
       let versionOne = pure $ VersionNumber 1
       comments <- (o .: "comments" >>= parseJSON) <|> pure []
       Snippet <$> (o .: "id"             <|> pure 0)
+              <*> (o .: "parentId"       <|> pure 0)
               <*> (o .: "currentVersion" <|> versionOne)
               <*> (o .: "created"        <|> pure 0 >>= toUTCTime)
               <*> (o .: "userId")
@@ -55,10 +58,11 @@ instance FromJSON Snippet where
 
 instance ToJSON Snippet where
    toJSON Snippet{..} = object [ "id"              .= snippetId
+                               , "parentId"        .= snippetParentId
                                , "currentVersion"  .= snippetCurrentVersion
                                , "created"         .= snippetCreated
                                , "userId"          .= snippetUserId
-                               , "description"     .= snippetDescription 
+                               , "description"     .= snippetDescription
                                , "comments"        .= snippetComments ]
 
 instance KeyIndexable Snippet where

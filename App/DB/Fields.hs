@@ -1,6 +1,7 @@
 module App.DB.Fields where
 
 import Database.HaskellDB.DBLayout
+import Data.Text
 import Prelude                                hiding ( id )
 
 -- | id
@@ -20,7 +21,7 @@ data Email = Email
 instance FieldTag Email where 
    fieldName _ = "email"
 
-email :: Attr Email String
+email :: Attr Email Text
 email = mkAttr Email
 
 -- | current version
@@ -40,7 +41,7 @@ data Created = Created
 instance FieldTag Created where 
    fieldName _ = "created"
 
-created :: Attr Created String
+created :: Attr Created Text
 created = mkAttr Created
 
 -- | user id
@@ -60,7 +61,7 @@ data Description = Description
 instance FieldTag Description where 
    fieldName _ = "description"
 
-description :: Attr Description String
+description :: Attr Description Text
 description = mkAttr Description
 
 -- | version
@@ -80,7 +81,7 @@ data Body = Body
 instance FieldTag Body where 
    fieldName _ = "contents"
 
-body :: Attr Body String
+body :: Attr Body Text
 body = mkAttr Body
 
 -- | snippet id
@@ -93,45 +94,25 @@ instance FieldTag SnippetId where
 snippetId :: Attr SnippetId Int
 snippetId = mkAttr SnippetId
 
--- | remix id
+-- | parent id
 
-data RemixId = RemixId
+data ParentId = ParentId
 
-instance FieldTag RemixId where 
-   fieldName _ = "remix_id"
+instance FieldTag ParentId where 
+   fieldName _ = "parent_id"
 
-remixId :: Attr RemixId Int
-remixId = mkAttr RemixId
+parentId :: Attr ParentId Int
+parentId = mkAttr ParentId
 
--- | entity type
+-- | snippet version
 
-data EntityType = EntityType
+data SnippetVersion = SnippetVersion
 
-instance FieldTag EntityType where 
-   fieldName _ = "entity_type"
+instance FieldTag SnippetVersion where 
+   fieldName _ = "snippet_version"
 
-entityType :: Attr EntityType String
-entityType = mkAttr EntityType
-
--- | entity id
-
-data EntityId = EntityId
-
-instance FieldTag EntityId where 
-   fieldName _ = "entity_id"
-
-entityId :: Attr EntityId Int
-entityId = mkAttr EntityId
-
--- | entity version
-
-data EntityVersion = EntityVersion
-
-instance FieldTag EntityVersion where 
-   fieldName _ = "entity_version"
-
-entityVersion :: Attr EntityVersion Int
-entityVersion = mkAttr EntityVersion
+snippetVersion :: Attr SnippetVersion Int
+snippetVersion = mkAttr SnippetVersion
 
 -- | version created
 
@@ -140,5 +121,5 @@ data VersionCreated = VersionCreated
 instance FieldTag VersionCreated where 
    fieldName _ = "created"
 
-versionCreated :: Attr VersionCreated String
+versionCreated :: Attr VersionCreated Text
 versionCreated = mkAttr VersionCreated
