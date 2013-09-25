@@ -1,16 +1,21 @@
 'use strict';
 
-function AllCtrl ($scope) {
-    $scope.test = 'all snippets';
-}
+window.angular
+    .module('snippet.controllers', ['snippet.services'])
 
-function OneCtrl ($scope, $routeParams) {
-    $scope.test = 'single snippet';
-    $scope.id = $routeParams.id;
-}
+    .controller('AllCtrl', ['$scope', 'Snippet', function ($scope, Snippet) {
+        $scope.snippets = Snippet.query();
+    }])
 
-function VersionCtrl ($scope, $routeParams) {
-    $scope.test = 'version';
-    $scope.id = $routeParams.id;
-    $scope.version = $routeParams.version;
-}
+    .controller('OneCtrl', ['$scope', '$routeParams', 'Snippet', function ($scope, $routeParams, Snippet) {
+        $scope.snippet = Snippet.get({
+            id: $routeParams.id
+        });
+    }])
+
+    .controller('VersionCtrl', ['$scope', '$routeParams', 'Snippet', function ($scope, $routeParams, Snippet) {
+        $scope.snippet = Snippet.get({
+            id: $routeParams.id,
+            version: $routeParams.version
+        });
+    }]);

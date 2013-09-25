@@ -1,3 +1,14 @@
-<p>one.html</p>
-<p>{{ test }}</p>
-<p>{{ id }}</p>
+<h2>Snippet</h2>
+<p>{{ snippet.id }}</p>
+<p>{{ snippet.created }}</p>
+<p>{{ snippet.description }}</p>
+<p>{{ snippet.currentVersion.body }}</p>
+
+<h2>Comments</h2>
+<ul>
+    <li ng-repeat="comment in snippet.comments">
+        <p>{{ comment.id }}</p>
+        <p>{{ comment.created }}</p>
+        <p>{{ comment.body }}</p>
+    </li>
+</ul>

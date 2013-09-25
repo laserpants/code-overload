@@ -2,9 +2,9 @@
 
 // Declare app level module which depends on filters and services.
 window.angular
-    .module('snippets', [])
+    .module('snippets', ['snippet.controllers'])
 
-    .config(['$routeProvider', function($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/snippet', {
             controller: 'AllCtrl',
             templateUrl: 'partials/all.html'

@@ -1,2 +1,6 @@
-<p>all.html</p>
-<p>{{ test }}</p>
+<ul>
+    <li ng-repeat="snippet in snippets">
+        <p><a href="#/snippet/{{ snippet.id }}">Description: {{ snippet.description }}</a></p>
+        <p>Number of comments: {{ snippet.comments.length }}</p>
+    </li>
+</ul>
