@@ -119,6 +119,8 @@ In Greek mythology, Aeson was the father of Jason. In Haskell folklore, Aeson is
 
 ### Routes
 
+### Database and schema
+
 ### Types
 
 ### Models
