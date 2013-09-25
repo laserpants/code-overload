@@ -6,7 +6,7 @@
 
 As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming.
 
-Intuitively, we may think of the difference as,
+In this context, conventional (non-functional) programming languages (C, C++, Java, etc.) are commonly referred to as *imperative* languages. Intuitively, we may think of the difference as,
 
 * imperative: a sequence of instructions that outline what a program should do;
 * declarative: a collection of definitions that declare what things are.
@@ -19,7 +19,7 @@ Haskell is a modern, compiled, strongly typed, purely functional, programming la
 
 GHC is the most commonly used Haskell compiler. It comes bundled with the Haskell platform -- a comprehensive development environment available for Windows, Mac, and Linux.
 
-Haskell belongs to a language family commonly referred to as lazy functional programming languages. Lazy evaluation is a technique used by compilers to implement a language property known as non-strictness. Strict and non-strict semantics differ in how evaluation of expressions propagates:
+Haskell belongs to a language family commonly referred to as *lazy* functional programming languages. Lazy evaluation is a technique used by compilers to implement a language property known as non-strictness. Strict and non-strict semantics differ in how evaluation of expressions propagates:
 
 * In the more common, strict semantics, expressions are evaluated from the inside-out. (example)
 * Non-strict semantics starts from the outside and unfolds towards the center. Sub-expressions are only evaluated when they are needed (call-by-need).
