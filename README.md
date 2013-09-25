@@ -26,9 +26,7 @@ The term *pure* is often used to describe a property of expressions in functiona
 
 Recall the black-box metaphor, used in numerous mathematical textbooks (illustration?), and according to which a function's internals are completely sealed off from the outside world. A side-effect is when a function or expression violates this principle — that is, the procedure is allowed to communicate in some way with other program units (e.g. to share and exchange information).
 
-A function is said to be *referentially transparent* if (and only if) it, given the same input parameters, always produces the same output (return value).
-
-If one is looking for a raison d'être for *pure* functional programming, referential transparency is a good candidate. When reasoning with formulae in algebra, arithmetic, and logic, this property — also called *substitutivity of equals for equals* — is so fundamentally important that it is usually taken for granted.
+A function is said to be *referentially transparent* if (and only if) it, given the same input parameters, always produces the same output (return value). If one is looking for a raison d'être for *pure* functional programming, referential transparency is a good candidate. When reasoning with formulae in algebra, arithmetic, and logic, this property — also called *substitutivity of equals for equals* — is so fundamentally important that it is usually taken for granted.
 
 ### Haskell
 
