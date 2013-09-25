@@ -1,7 +1,6 @@
 <ul>
     <li ng-repeat="snippet in snippets">
-        <p><a href="#/snippet/{{ snippet.id }}">Name: {{ snippet.name }}</a></p>
-        <p>Description: {{ snippet.description }}</p>
-        <p>Number of comments: {{ snippet.comments }}</p>
+        <p><a href="#/snippet/{{ snippet.id }}">Description: {{ snippet.description }}</a></p>
+        <p>Number of comments: {{ snippet.comments.length }}</p>
     </li>
 </ul>

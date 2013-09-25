@@ -5,13 +5,27 @@ window.angular
 
     .factory('Snippet', function ($resource) {
         return $resource(
-            'json/:id.json',
+            'http://54.200.60.8\\:8000/snippet/:id',
             { },
             {
                 query: {
+                    isArray: true,
                     method:'GET',
-                    params: { id: 'snippets' },
-                    isArray: true
+                    params: { id: '' }
+                }
+            }
+        );
+    })
+
+    .factory('Comment', function ($resource) {
+        return $resource(
+            'http://54.200.60.8\\:8000/comment/:id',
+            { },
+            {
+                query: {
+                    isArray: true,
+                    method:'GET',
+                    params: { id: '' }
                 }
             }
         );
