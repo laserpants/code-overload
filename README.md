@@ -80,7 +80,7 @@ As an example, here is what a simple query can look like using HaskellDB:
       project $ F.id << content!F.id
   
 
-The original HaskellDB library was written by Daan Leijen and Erik Meijer (who is also the architect behind LINQ). It draws heavily from concepts in relational algebra, and the theory behind HaskellDB is described in Leijen's PhD thesis: “The λ Abroad - A Functional Approach to Software Components.” Fortunately, understanding HaskellDB does not require deep knowledge in relational algebra, which serves in this context as a theoretical foundation for relational databases.
+The original HaskellDB library was written by Daan Leijen and Erik Meijer (who is also the architect behind LINQ). It draws heavily from concepts in relational algebra, and the theory behind HaskellDB is described in Leijen's PhD thesis: “The λ Abroad - A Functional Approach to Software Components.” Fortunately, understanding HaskellDB does not require deep knowledge in relational algebra, which serves in this context more as a theoretical foundation for relational databases.
 
 #### The new HaskellDB
 
