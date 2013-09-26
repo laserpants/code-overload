@@ -121,7 +121,7 @@ I highly recommend The Happstack Crashcourse, written by Jeremy Shaw: http://hap
 
 Running this example will launch the server on port 8000 — the default port. We can now access the server from a browser (`http://localhost:8000/`) or from the command line, using for example
 
-    curl http://localhost:8000
+    $ curl http://localhost:8000
 
 To override a specific setting, we could then write, e.g.,
 
