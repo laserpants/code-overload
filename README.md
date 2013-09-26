@@ -4,7 +4,7 @@
 
 ### Functional programming
 
-Functional programming finds its origins in Alonzo Church’s Lambda Calculus (λ-calculus) — a logical theory of computable functions that predates the electronic computer. The first language based on ideas from λ-calculus was LISP — invented by John McCarthy in 1958.
+Functional programming finds its origins in Alonzo Church’s Lambda Calculus (λ-calculus) — a logical theory of computable functions that predates the electronic computer. The first language based on ideas from λ-calculus was LISP; invented by John McCarthy in 1958.
 
 As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming, since it enables us to express the formal logic of a computation without thinking in terms of control flow or sequential progression.
 
