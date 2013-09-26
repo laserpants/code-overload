@@ -1,10 +1,10 @@
-> A work-in-progress tutorial that explores functional programming techniques and technologies to build a modern, mobile web application using JavaScript and a Haskell-powered RESTful JSON API-server. 
+> A work-in-progress tutorial that explores functional programming techniques and technologies to build a modern, mobile web application using JavaScript and a Haskell-powered RESTful JSON API-server (server-API???). 
 
 ## Overview of technologies
 
 ### Functional programming
 
-Functional programming finds its origins in Alonzo Church’s Lambda Calculus (λ-calculus) — a logical theory of computable functions that predates the electronic computer. The first language based on ideas from λ-calculus was LISP. It was invented by John McCarthy in 1958.
+Functional programming finds its origins in Alonzo Church’s Lambda Calculus (λ-calculus) — a logical theory of computable functions that predates the electronic computer. The first language based on ideas from λ-calculus was LISP — invented by John McCarthy in 1958.
 
 As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming, since it enables us to express the formal logic of a computation without thinking in terms of control flow or sequential progression.
 
@@ -13,11 +13,15 @@ In this context, conventional (non-functional) programming languages (C, C++, Ja
 * imperative: a sequence of instructions that outline what a program should do;
 * declarative: a collection of definitions that declare what things are.
 
-Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
+The important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
-Functional programming favors construction over mutation, and we think of a program more as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. To obtain the result of a computation, an expression is reduced until it is in *normal form* — the state in which it is fully evaluated.
+We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
 
-Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-what-is-weak-head-normal-form    
+    f = a . b . c
+
+In the traditional, *stateful* model of computation, we evaluate the result of an algorithm by examining the configuration of some part of the memory when the program halts (if it does). When we program with implicit, or immutable state, the values of objects' attributes are invariant over time -- we do not allow their state to change. Instead, state is implicitly "threaded" in a direct way between procedure calls. To obtain the result of a computation, an expression is reduced to its *normal form* -- i.e., a representation in which it is fully evaluated.
+
+(Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-what-is-weak-head-normal-form)
 
 ###### Normal form:
 
@@ -30,7 +34,7 @@ Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-
     "he" ++ "llo"        -- (++ denotes string concatenation) can be reduced to "hello"
     (\x -> (x + 1)) 4    -- here, the function is applied to the value 4, hence this expression evaluates to 5
     
-For someone who comes from an imperative language background, programming in pure functional style can require a change in perspective.
+For someone who comes from an imperative language background, programming in pure functional style can require some change in perspective.
 
 #### Pure functions
 
@@ -39,7 +43,7 @@ The term *pure* is often used to describe a property of expressions in the conte
 * it is not allowed to exhibit any *side effects*, and
 * it must be *referentially transparent*.
 
-Recall the black-box metaphor, used in numerous mathematical textbooks (illustration?), and according to which a function's internals are completely sealed off from the outside world. A side-effect is when a function or expression violates this principle — that is, the procedure is allowed to communicate in some way with other program units (e.g. to share and exchange information).
+Recall the black-box metaphor, found in numerous mathematical textbooks (illustration?), and according to which a function's internals are completely sealed off from the outside world. A side-effect is when a function or expression violates this principle — that is, the procedure is allowed to communicate in some way with other program units (e.g. to share and exchange information).
 
 A function is said to be referentially transparent if (and only if) it, given the same input parameters, always produces the same output (return value). If one is looking for a raison d'être for pure functional programming, referential transparency is a good candidate. When reasoning with formulae in algebra, arithmetic, and logic, this property — also called *substitutivity of equals for equals* — is so fundamentally important that it is usually taken for granted.
 
@@ -103,7 +107,7 @@ The RecordWildCards extension introduces a simple notation that makes pattern ma
 
 HaskellDB is a combinator library for building syntactically correct, type-safe database queries, similar to the Language Integrated Query (LINQ) component in the .NET framework (or ARel for Ruby on Rails).
 
-HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need for a separate domain-specific language (such as SQL).
+HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need for a separate (domain-specific) language, such as SQL.
 
 As an example, here is what a simple query can look like using HaskellDB:
 
