@@ -119,13 +119,13 @@ I highly recommend The Happstack Crashcourse, written by Jeremy Shaw: http://hap
         , timeout   = 30
         }
 
-To override a specific setting, we could then write, e.g.,
-
-    main = simpleHTTP nullConf { port = 8080 } $ ok "Hello, World!"
-
 Running this example will launch the server on port 8000 — the default port. We can now access the server from a browser (`http://localhost:8000/`) or from the command line, using for example
 
     curl http://localhost:8000
+
+To override a specific setting, we could then write, e.g.,
+
+    main = simpleHTTP nullConf { port = 8080 } $ ok "Hello, World!"
     
 Hello world with routes
 
