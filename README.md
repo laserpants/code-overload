@@ -85,6 +85,10 @@ This function accepts any list as input, as long as the type of its elments is a
 
 ### SQLite
 
+## What we are building
+
+...
+
 ## Part I. Server
 
 ### Happstack
