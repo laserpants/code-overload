@@ -89,6 +89,47 @@ This function accepts any list as input, as long as the type of its elments is a
 
 ### Happstack
 
+Happstack is the **H**askell **app**lication server **stack**.
+
+http://happstack.com
+
+http://happstack.com/docs/crashcourse/index.html
+
+#### Installation
+
+#### Hello World!
+
+    module Main where
+
+    import Happstack.Server (nullConf, simpleHTTP, toResponse, ok)
+ 
+    main :: IO ()
+    main = simpleHTTP nullConf $ ok "Hello, World!"
+
+Running this example will launch the server on port 8000 -- the default port. We can now access the server from a browser (`http://localhost:8000/`) or from the command line, using for example
+
+    curl http://localhost:8000
+    
+Hello world with routes
+
+    module Main where
+
+    import Happstack.Server
+    import Control.Monad                  ( mzero, msum )
+
+    main :: IO ()
+    main = do
+       simpleHTTP nullConf $ msum 
+          [ dirs "one" $ ok $ toResponse "You said one"
+          , dirs "two" $ ok $ toResponse "Two it is"
+          , mzero
+          ]
+
+We can now run
+
+    $ curl http://localhost:8000/one
+    You said one
+
 ### Language extensions
 
 #### FlexibleContexts
