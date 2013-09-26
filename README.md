@@ -87,7 +87,7 @@ This function accepts any list as input, as long as the type of its elments is a
 
 ## What we are building
 
-The idea of the application is to allow users to post their code snippets, and let other users improve, refactor, and optimize -- in other words "remix" -- the program without changing its semantics.
+The idea of the application is to allow users to post their code snippets, and let other users improve, refactor, and optimize — in other words "remix" — the program without changing its semantics.
 
 ## Part I. Server
 
