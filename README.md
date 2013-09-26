@@ -97,8 +97,6 @@ Happstack is the **H**askell **app**lication server **stack**.
 
 http://happstack.com
 
-http://happstack.com/docs/crashcourse/index.html
-
 #### Installation
 
 #### Hello World!
@@ -110,7 +108,22 @@ http://happstack.com/docs/crashcourse/index.html
     main :: IO ()
     main = simpleHTTP nullConf $ ok "Hello, World!"
 
-Running this example will launch the server on port 8000 -- the default port. We can now access the server from a browser (`http://localhost:8000/`) or from the command line, using for example
+...
+
+    nullConf = Conf
+        { port      = 8000
+        , validator = Nothing
+        , logAccess = Just logMAccess
+        , timeout   = 30
+        }
+
+To override a specific setting, we could then write, e.g.,
+
+    main = simpleHTTP nullConf { port = 8080 } $ ok "Hello, World!"
+
+I highly recommend The Happstack Crashcourse, written by Jeremy Shaw: http://happstack.com/docs/crashcourse/index.html
+
+Running this example will launch the server on port 8000 — the default port. We can now access the server from a browser (`http://localhost:8000/`) or from the command line, using for example
 
     curl http://localhost:8000
     
