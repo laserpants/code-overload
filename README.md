@@ -137,8 +137,8 @@ Hello world with routes
     main :: IO ()
     main = do
        simpleHTTP nullConf $ msum 
-          [ dirs "one" $ ok $ toResponse "You said one"
-          , dirs "two" $ ok $ toResponse "Two it is"
+          [ dir "one" $ ok $ toResponse "You said one"
+          , dir "two" $ ok $ toResponse "Two it is"
           , mzero
           ]
 
@@ -146,6 +146,17 @@ We can now run
 
     $ curl http://localhost:8000/one
     You said one
+
+In this example, we are combining a list of url paths into a single value using `msum`, defined by the `MonadPlus` type class.
+
+    msum :: MonadPlus m => [m a] -> m a
+    msum = foldr mplus mzero
+
+> The behaviour of MonadPlus is to try each ServerPartT in succession, until one succeeds.
+
+`dir` is used to match on static path components.
+
+> Pop a path element and run the ServerPartT if it matches the given string. 
 
 ### Language extensions
 
