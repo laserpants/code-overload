@@ -19,7 +19,7 @@ We say that the state of an object is *mutable* if the operational semantics all
 
     f = a . b . c
 
-In the traditional, *stateful* model of computation, we evaluate the result of an algorithm by examining the configuration of some part of the memory when the program halts (if it does). When we program with implicit, or immutable state, the values of objects' attributes are invariant over time — we do not allow their state to change. Instead, state is implicitly "threaded" in a direct way between procedure calls. To obtain the result of a computation, an expression is reduced to its *normal form*, i.e., a representation in which it is fully evaluated.
+In the traditional, *stateful* model of computation, we evaluate the result of an algorithm by examining the configuration of some part of memory when the program halts (if it does). When we program with implicit, or immutable state, the values of objects' attributes are invariant over time — we do not allow their state to change. Instead, state is implicitly "threaded" in a direct way between procedure calls. To obtain the result of a computation, an expression is reduced to its *normal form*, i.e., a representation in which it is fully evaluated.
 
 (Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-what-is-weak-head-normal-form)
 
@@ -38,7 +38,7 @@ For someone who comes from an imperative language background, programming in pur
 
 #### Pure functions
 
-The term *pure* is often used to describe a property of expressions in the context of functional programming. For a function to be considered pure, 
+The term *pure* is often used to describe a property of expressions in this context. For a function to be considered pure, 
 
 * it is not allowed to exhibit any *side effects*, and
 * it must be *referentially transparent*.
@@ -176,7 +176,7 @@ The RecordWildCards extension introduces a simple notation that makes pattern ma
 
 HaskellDB is a combinator library for building syntactically correct, type-safe database queries, similar to the Language Integrated Query (LINQ) component in the .NET framework (or ARel for Ruby on Rails).
 
-HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need for a separate (domain-specific) language, such as SQL.
+HaskellDB does follow an ORM approach, although I am not sure the term "object" is the most appropriate here. What is common between HaskellDB, blaze-html, Parsec, and many other Haskell libraries is that they allow you to build statements using native Haskell code, without the need for a separate (domain-specific) language, such as SQL.
 
 As an example, here is what a simple query can look like using HaskellDB:
 
