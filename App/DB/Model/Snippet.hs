@@ -141,19 +141,19 @@ dbUpdateSnippet id Snippet{..} conn = do
                   # F.userId         <<- snippetUserId
                   # F.description    <<- snippetDescription )
 
--- | Delete a snippet and all of its versions
+-- | Delete a snippet, all of its versions and associated data
 dbDeleteSnippet :: Int -> Database -> IO ()
-dbDeleteSnippet id conn = do 
-   let id_ = constant id
-   delete conn T.snippets $ \content -> content!F.id .==. id_
+dbDeleteSnippet snippetId conn = do 
+   let id = constant snippetId
+   delete conn T.snippets $ \content -> content!F.id .==. id
    -- delete all associated records in snippet_versions
-   delete conn T.snippetVersions $ \content -> content!F.snippetId .==. id_
+   delete conn T.snippetVersions $ \content -> content!F.snippetId .==. id
    -- delete all associated comments
-   delete conn T.comments $ \content -> content!F.snippetId .==. id_
+   delete conn T.comments $ \content -> content!F.snippetId .==. id
    -- upvotes
-   delete conn T.upvotes $ \content -> content!F.snippetId .==. id_
+   delete conn T.upvotes $ \content -> content!F.snippetId .==. id
    -- child snippets
-   delete conn T.snippets $ \content -> content!F.parentId .==. id_
+   delete conn T.snippets $ \content -> content!F.parentId .==. id
    
 ----------------------------------- /~/ -----------------------------------
 
