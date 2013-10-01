@@ -12,6 +12,7 @@ import Data.Text
 import qualified App.DB.Tables.Snippets        as T
 import qualified App.DB.Tables.SnippetVersions as T
 import qualified App.DB.Tables.Comments        as T
+import qualified App.DB.Tables.Upvotes         as T
 import qualified App.DB.Fields                 as F
 
 -- | Fetch all root (parentId = 0) snippets from the database
@@ -73,6 +74,33 @@ dbGetSnippet id = do
 
 ----------------------------------- /~/ -----------------------------------
 
+-- | Get all children for a given snippet
+dbGetChildren :: Int -> Query (Rel (RecCons F.Id               (Expr Int)
+                                   (RecCons F.ParentId         (Expr Int)
+                                   (RecCons F.CurrentVersion   (Expr Int)
+                                   (RecCons F.Created          (Expr Text)
+                                   (RecCons F.UserId           (Expr Int)
+                                   (RecCons F.Description      (Expr Text)
+                                   (RecCons F.Body             (Expr Text)
+                                   (RecCons F.VersionCreated   (Expr Text) RecNil)))))))))
+
+dbGetChildren parent = do
+   s <- table T.snippets
+   v <- table T.snippetVersions
+   restrict ( s!F.parentId  .==. constant parent 
+         .&&. v!F.snippetId .==. s!F.id
+         .&&. v!F.version   .==. s!F.currentVersion )
+   project $ F.id          	  << s!F.id
+           # F.parentId       << s!F.parentId
+           # F.currentVersion << s!F.currentVersion
+           # F.created     	  << s!F.created
+           # F.userId     	  << s!F.userId
+           # F.description    << s!F.description
+           # F.body           << v!F.body
+           # F.versionCreated << v!F.versionCreated
+
+----------------------------------- /~/ -----------------------------------
+
 -- | Insert a snippet into the database
 dbInsertSnippet :: Snippet -> Database -> IO ()
 dbInsertSnippet Snippet{..} conn = do
@@ -116,9 +144,16 @@ dbUpdateSnippet id Snippet{..} conn = do
 -- | Delete a snippet and all of its versions
 dbDeleteSnippet :: Int -> Database -> IO ()
 dbDeleteSnippet id conn = do 
-   delete conn T.snippets $ \content -> content!F.id .==. constant id
+   let id_ = constant id
+   delete conn T.snippets $ \content -> content!F.id .==. id_
    -- delete all associated records in snippet_versions
-   delete conn T.snippetVersions $ \content -> content!F.snippetId .==. constant id
+   delete conn T.snippetVersions $ \content -> content!F.snippetId .==. id_
+   -- delete all associated comments
+   delete conn T.comments $ \content -> content!F.snippetId .==. id_
+   -- upvotes
+   delete conn T.upvotes $ \content -> content!F.snippetId .==. id_
+   -- child snippets
+   delete conn T.snippets $ \content -> content!F.parentId .==. id_
    
 ----------------------------------- /~/ -----------------------------------
 
