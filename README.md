@@ -60,7 +60,7 @@ Haskell belongs to a language family commonly referred to as *lazy* functional p
 
 (example)
 
-Although Haskell encompasses a sophisticated type system that supports polymorphism and an advanced form of systematic overloading; clever use of type inference allows for a very minimalistic and elegant syntax. Surprisingly, many times even more succinct than that of a dynamically typed scripting language:
+Although Haskell encompasses a sophisticated type system that supports polymorphism and an advanced form of systematic overloading; clever use of type inference allows for a very minimalistic and elegant syntax. Surprisingly, since type annotations are rarely necessary, many times even more succinct than that of a dynamically typed scripting language:
 
     -- Insertion sort implementation
 
