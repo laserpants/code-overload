@@ -47,7 +47,14 @@ Recall the black-box metaphor, found in numerous mathematical textbooks (illustr
 
 A function is said to be referentially transparent if (and only if) it, given the same input parameters, always produces the same output (return value). If one is looking for a raison d'être for pure functional programming, referential transparency is a good candidate. When reasoning with formulae in algebra, arithmetic, and logic, this property — also called *substitutivity of equals for equals* — is so fundamentally important that it is usually taken for granted.
 
-Equational reasoning
+##### Equational reasoning
+
+Consider a simple example:
+
+    x = 42
+
+In functional programming, the equals sign here truly means equality -- the left-hand and right-hand side of the equals sign are substitutable for each other both ways. A consequence of this is that we can apply something called *equational reasoning* to program code written in a pure functional language. In contrast, the type of operation performed by C-like languages is sometimes referred to as *destructive assignment*.  
+
 
 ### Haskell
 
