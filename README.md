@@ -13,7 +13,7 @@ In this context, conventional (non-functional) programming languages (C, C++, Ja
 * imperative: a sequence of instructions that outline what a program should do;
 * declarative: a collection of definitions that declare what things are.
 
-The important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
+These *things* are essentially mathematical objects, and the important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
 We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
 
@@ -46,6 +46,8 @@ The term *pure* is often used to describe a property of expressions in this cont
 Recall the black-box metaphor, found in numerous mathematical textbooks (illustration?), and according to which a function's internals are completely sealed off from the outside world. A side-effect is when a function or expression violates this principle — that is, the procedure is allowed to communicate in some way with other program units (e.g. to share and exchange information).
 
 A function is said to be referentially transparent if (and only if) it, given the same input parameters, always produces the same output (return value). If one is looking for a raison d'être for pure functional programming, referential transparency is a good candidate. When reasoning with formulae in algebra, arithmetic, and logic, this property — also called *substitutivity of equals for equals* — is so fundamentally important that it is usually taken for granted.
+
+Equational reasoning
 
 ### Haskell
 
