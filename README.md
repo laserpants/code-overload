@@ -53,8 +53,7 @@ Consider a simple example:
 
     x = 42
 
-In functional programming, the equals sign here truly means equality -- the left-hand and right-hand side of the equals sign are substitutable for each other both ways. A consequence of this is that we can apply something called *equational reasoning* to program code written in a pure functional language. In contrast, the type of operation performed by C-like languages is sometimes referred to as *destructive assignment*.  
-
+In functional programming, the left-hand and right-hand side of the equals sign are substitutable for each other both ways. That is, unlike in a language like C, the above notation truly asserts an equality. A consequence of this is that we can apply something called *equational reasoning* to program code written in a pure functional language. To contrast this, the type of operation performed by C-like languages is sometimes referred to as a *destructive assignment*.  
 
 ### Haskell
 
