@@ -8,7 +8,7 @@ Functional programming finds its origins in Alonzo Churchâ€™s Lambda Calculus (Î
 
 As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming, since it enables us to express the formal logic of a computation without thinking in terms of control flow or sequential progression.
 
-In this context, conventional (non-functional) programming languages (C, C++, Java, PHP, etc.) are often referred to as *imperative*, or prescriptive languages. Intuitively, we may think of the difference as,
+In this context, conventional (non-functional) programming languages (C, C++, Java, PHP, etc.) are sometimes referred to as *imperative*, or prescriptive languages. Intuitively, we may think of the difference as,
 
 * imperative: a sequence of instructions that outline what a program should do;
 * declarative: a collection of definitions that declare what things are.
