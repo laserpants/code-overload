@@ -19,7 +19,7 @@ We say that the state of an object is *mutable* if the operational semantics all
 
     f = a . b . c
 
-In the traditional, *stateful* model of computation, we evaluate the result of an algorithm by examining the configuration of some part of memory when the program halts (if it does). When we program with implicit, or immutable state, the values of objects' attributes are invariant over time — we do not allow their state to change. Instead, state is implicitly "threaded" in a direct way between procedure calls. To obtain the result of a computation, an expression is reduced to its *normal form*, i.e., a representation in which it is fully evaluated.
+In the traditional, *stateful* model of computation, we evaluate the result of an algorithm by examining the configuration of some part of memory when the program halts (if it does). When programming with implicit, or immutable state, the values of objects' attributes are invariant over time — we do not allow their state to change. Instead, state is implicitly "threaded" in a direct way between procedure calls. To obtain the result of a computation, an expression is reduced to its *normal form*, i.e., a representation in which it is fully evaluated.
 
 (Examples borrowed from here: http://stackoverflow.com/questions/6872898/haskell-what-is-weak-head-normal-form)
 
