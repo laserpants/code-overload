@@ -38,7 +38,7 @@ For someone who comes from an imperative language background, programming in pur
 
 #### Pure functions
 
-The term *pure* is often used to describe a property of expressions in this context. For a function to be considered pure, 
+The term *pure* is often used to describe a property of expressions, relevant to this discussion. For a function to be considered pure, 
 
 * it is not allowed to exhibit any *side effects*, and
 * it must be *referentially transparent*.
