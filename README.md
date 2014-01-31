@@ -13,7 +13,7 @@ In this context, conventional (non-functional) programming languages (C, C++, Ja
 * imperative: a sequence of instructions that outline what a program should do;
 * declarative: a collection of definitions that declare what things are.
 
-A *"thing"* more formally refers to a mathematical object of some sort. The important point to note is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
+A *"thing"* more formally refers to a mathematical object of some sort. The important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
 We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
 
@@ -53,7 +53,7 @@ Consider a simple example:
 
     x = 42
 
-In functional programming, the left-hand and right-hand side of the equals sign are substitutable for each other both ways. That is, unlike in a language like C, the above notation truly asserts an equality. A consequence of this is that we can apply something called *equational reasoning* to program code written in a pure functional language. To contrast this, the type of operation performed by C-like languages is sometimes referred to as a *destructive assignment*.  
+In functional programming, the left-hand and right-hand side of the equals sign are substitutable for each other both ways. That is, unlike in a language like C, the above notation truly asserts an equality. A consequence of this is that we can apply *equational reasoning* to program code written in a pure functional language. To contrast this, the type of operation performed by C-like languages is sometimes referred to as a *destructive assignment*.  
 
 ### Haskell
 
