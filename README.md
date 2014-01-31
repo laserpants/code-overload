@@ -11,9 +11,9 @@ As a form of declarative programming, code written in functional style carries n
 In this context, conventional (non-functional) programming languages (C, C++, Java, PHP, etc.) are sometimes referred to as *imperative*, or prescriptive languages. Intuitively, we can think of the difference as,
 
 * imperative: a sequence of instructions that outline what a program should do;
-* declarative: a collection of definitions that declare what things are.
+* declarative: a collection of definitions that declare what things are (where a *"thing"* more formally refers to a mathematical object of some sort). 
 
-A *"thing"* more formally refers to a mathematical object of some sort. The important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
+The important point to note here is that a declaration, by itself does not imply any computation. Another key difference is that the function, as one could expect, has a much more central role. Functional programming languages treat functions as first-class values. They can be passed around as arguments, and used in declarations, similar to class-type objects in OOP.
 
 We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
 
