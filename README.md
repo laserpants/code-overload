@@ -6,7 +6,7 @@
 
 Functional programming finds its origins in Alonzo Church’s Lambda Calculus (λ-calculus) — a logical theory of computable functions that predates the electronic computer. The first language based on ideas from λ-calculus was LISP; invented by John McCarthy in 1958.
 
-As a form of declarative programming, code written in functional style carries no immediate sense of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming, since it enables us to express the formal logic of a computation without thinking of it in terms of control flow or sequential progression.
+As a form of declarative programming, code written in functional style carries no immediate notion of sequentiality. This makes it particularly well-suited for parallel and asynchronous programming, since it enables us to express the formal logic of a computation without thinking of it in terms of control flow or stepwise progression.
 
 In this context, conventional (non-functional) programming languages (C, C++, Java, PHP, etc.) are sometimes referred to as *imperative*, or prescriptive languages. Intuitively, we can think of the difference as,
 
@@ -17,7 +17,7 @@ The important point to note here is that a declaration, by itself does not imply
 
 #### Explicit vs. implicit state
 
-We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Thus, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
+We say that the state of an object is *mutable* if the operational semantics allow its data to change as it interacts with program logic. Functional programming favors construction over mutation, and we think of a program not so much as a sequence of explicit state manipulations, but rather as a series of transformations. Therefore, an important tool in functional programming is function composition, i.e., the process of applying one function to the output of another. 
 
     f = a . b . c
 
